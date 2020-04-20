@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+input[type],
+textarea {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
