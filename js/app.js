@@ -24,7 +24,6 @@ function jsonToCss(text) {
         console.log("JSON: error parse");
         return null;
     }
-    console.log("JSON: " + json);
     if (typeof json != "object") {
         return null;
     }
@@ -74,27 +73,7 @@ function getJsonKey(json_) {
     header = header.slice(0, -1);
     return header;
 }
-function onClean() {
+function onClear() {
     textInput.value = "";
     textOutput.value = "";
 }
-/*
-
- [
-     {
-         "id":1,
-         "nome":"Leo"
-     },
-     {
-         "id":2,
-         "nome": "Piper"
-     }
- ]
-
-    id, nome
-    i, Leo,
-    2, Piper
-
-
-
-*/ 

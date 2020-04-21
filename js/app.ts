@@ -17,8 +17,6 @@ function onConvert(){
 }
 
 
-
-
 function jsonToCss(text: string): string | null{
     let json: Array<any>;
     let header: string = "";
@@ -28,8 +26,7 @@ function jsonToCss(text: string): string | null{
     } catch(SyntaxError){
         console.log("JSON: error parse");
         return null;
-    }
-    console.log("JSON: "+json);   
+    } 
     if(typeof json != "object"){      
         return null;
     }
@@ -63,29 +60,8 @@ function jsonToCss(text: string): string | null{
     return header + "\n" + body;
 }
 
-function getJsonValues(json_:Array<any>){
-    let body: string = "";
-    for(let data in json_){
-        let values: Array<any> = Object["values"](data);
-        values.forEach(element => {
-            body += element + ","
-        });
-        body = body.slice(0,-1) + "\n";
-    }
-    return body;
-}
 
-function getJsonKey(json_: Array<any>){
-    let keys: Array<any> = Object.keys(json_);
-    let header: string = "";
-    keys.forEach(element => {
-        header += element + ",";
-    });
-    header = header.slice(0,-1);
-    return header;
-}
-
-function onClean(){
+function onClear(){
     textInput.value = ""
     textOutput.value = "";
 
