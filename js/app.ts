@@ -11,58 +11,53 @@ function onConvert(){
     if(result != null){
         textOutput.value = result;
     } else{
-        alert("JSON invalido");
+        alert("JSON inválido");
     }
     
 }
 
 
 function jsonToCss(text: string): string | null{
-    let json: Array<any>;
-    let header: string = "";
-    let body: string = "";
+    let json: any;
+    let result = "";
     try{
         json = JSON.parse(text);
+        if(typeof json != "object"){      
+            return null;
+        }
     } catch(SyntaxError){
         console.log("JSON: error parse");
         return null;
-    } 
-    if(typeof json != "object"){      
-        return null;
     }
-
     if(!Array.isArray(json)){
-        console.log("JSON: not array ");
-        return null;
+        json = [json];
     }
-
-    if(json.length == 0){
-        console.log("JSON: empty array ");
-        return "";
+    if(json.length==0){
+        return result;
     }
-    // header
-    let keys: Array<any> = Object.keys(json[0]); 
-    keys.forEach(element => {
-        header += element + ",";
+    result += getCsvLine(Object.keys(json[0]));
+    json.forEach((element:any)=>{
+        result += "\n" + getCsvLine(Object["values"](element));
     });
-    header = header.slice(0,-1);
-    // body
-    if(json.length >= 2){
-        for(let i=0; i<json.length;i++){
-            let values: Array<any> = Object["values"](json[i]);
-            values.forEach(element => {
-                body += element + ","
-            });
-            body = body.slice(0,-1) + "\n";
-        }
+    return result;
+}
 
-    }
-    return header + "\n" + body;
+function getCsvLine(array_:Array<any>): string{
+    let line="";
+    array_.forEach(element => {
+        if(typeof element =="string"){                 
+            if(element.search(`"`)!= -1 || element.search(",") != -1){
+                element =  `"`+element.replace(/\"/g, '""')+`"`;
+            }
+        }
+        line += element + ",";
+    });
+    line = line.slice(0,-1);
+    return line;
 }
 
 
 function onClear(){
     textInput.value = ""
     textOutput.value = "";
-
 }

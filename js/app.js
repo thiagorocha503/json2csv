@@ -10,68 +10,46 @@ function onConvert() {
         textOutput.value = result;
     }
     else {
-        alert("JSON invalido");
+        alert("JSON inválido");
     }
 }
 function jsonToCss(text) {
     var json;
-    var header = "";
-    var body = "";
+    var result = "";
     try {
         json = JSON.parse(text);
+        if (typeof json != "object") {
+            return null;
+        }
     }
     catch (SyntaxError) {
         console.log("JSON: error parse");
         return null;
     }
-    if (typeof json != "object") {
-        return null;
-    }
     if (!Array.isArray(json)) {
-        console.log("JSON: not array ");
-        return null;
+        json = [json];
     }
     if (json.length == 0) {
-        console.log("JSON: empty array ");
-        return "";
+        return result;
     }
-    // header
-    var keys = Object.keys(json[0]);
-    keys.forEach(function (element) {
-        header += element + ",";
+    result += getCsvLine(Object.keys(json[0]));
+    json.forEach(function (element) {
+        result += "\n" + getCsvLine(Object["values"](element));
     });
-    header = header.slice(0, -1);
-    // body
-    if (json.length >= 2) {
-        for (var i = 0; i < json.length; i++) {
-            var values = Object["values"](json[i]);
-            values.forEach(function (element) {
-                body += element + ",";
-            });
-            body = body.slice(0, -1) + "\n";
+    return result;
+}
+function getCsvLine(array_) {
+    var line = "";
+    array_.forEach(function (element) {
+        if (typeof element == "string") {
+            if (element.search("\"") != -1 || element.search(",") != -1) {
+                element = "\"" + element.replace(/\"/g, '""') + "\"";
+            }
         }
-    }
-    return header + "\n" + body;
-}
-function getJsonValues(json_) {
-    var body = "";
-    for (var data in json_) {
-        var values = Object["values"](data);
-        values.forEach(function (element) {
-            body += element + ",";
-        });
-        body = body.slice(0, -1) + "\n";
-    }
-    return body;
-}
-function getJsonKey(json_) {
-    var keys = Object.keys(json_);
-    var header = "";
-    keys.forEach(function (element) {
-        header += element + ",";
+        line += element + ",";
     });
-    header = header.slice(0, -1);
-    return header;
+    line = line.slice(0, -1);
+    return line;
 }
 function onClear() {
     textInput.value = "";
