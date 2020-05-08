@@ -5,43 +5,57 @@
     box-sizing: border-box;
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    /* Footer height */
+    padding-bottom: 60px;
+    padding-top: 20px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    /* Footer height */
+    line-height: 60px;
+    background-color: rgba(0, 0, 0, 90%);
+}
+
+#footer-content {
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#heart-emoji {
+    color: red;
+}
+
+#github-link {
+    color: gray;
+    text-decoration: none;
+}
+
+#github-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
 body {
     background-color: #03A9F4;
 }
 
-.div-input,
-.div-output {
-    width: 40%;
-    float: left;
-    height: 90%;
-}
-
-.div-actions {
-    width: 20%;
-    float: left;
-    padding-top: 30px;
-    text-align: center;
-    position: relative;
-    height: 90%;
-}
-
-.div-buttons {
-    top: 50%;
-    position: absolute;
-    transform: translateY(-50%);
-}
-
 #app {
-    width: 700px;
-    min-width: 700px;
-    height: 400px;
     border-radius: 5px;
-    padding: 25px;
     background-color: white;
-    position: relative;
-    margin-top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input[type],
@@ -56,6 +70,15 @@ textarea {
     border-color: gray;
     overflow: auto;
     resize: none;
+    outline: none;
+}
+
+textarea:hover {
+    border-color: black;
+}
+
+textarea:focus {
+    border-color: #03A9F4;
 }
 
 #app-title,
@@ -96,47 +119,61 @@ label {
     background-color: rgb(3, 169, 244, 0.1);
 }
 
-footer {
-    background-color: black;
-    height: 50px;
-    position: fixed;
-    bottom: 0;
+
+/* Mobile  */
+
+.div-input,
+.div-output,
+.div-actions {
     width: 100%;
-    min-width: 700px;
-    display: block;
 }
 
-.footer-content {
-    display: block;
-    text-align: center;
-    color: white;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+#app {
+    width: 95%;
+    height: auto;
+    padding: 15px;
 }
 
-#heart-emoji {
-    color: red;
+.div-actions {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    overflow: hidden;
 }
 
-#link-profile:link {
-    text-decoration: none;
-    color: white;
-}
-
-#link-profile:visited {
-    color: gray;
-    opacity: 0.9;
-}
-
-#link-profile:hover {
-    color: white;
-    text-decoration: underline;
+.div-buttons {
+    float: right;
 }
 
 @media screen and (max-width: 700px) {
+    .button {
+        height: 45px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    /* Desktop */
     #app {
-        position: static;
-        transform: translateX(0);
+        width: 700px;
+        height: 400px;
+        padding: 25px;
+    }
+    .div-input,
+    .div-output {
+        width: 40%;
+        float: left;
+        height: 90%;
+    }
+    .div-actions {
+        width: 20%;
+        float: left;
+        padding-top: 30px;
+        text-align: center;
+        position: relative;
+        height: 90%;
+    }
+    .div-buttons {
+        top: 50%;
+        position: absolute;
+        transform: translateY(-50%);
     }
 }

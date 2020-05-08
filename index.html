@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,30 +9,32 @@
 </head>
 
 <body>
-    <div id="container">
-        <div id="app">
-            <div>
-                <h1 id="app-title">JSON to CSV</h1>
-            </div>
-            <div class="div-input">
-                <label for="text-input">JSON</label><br>
-                <textarea name="" id="text-input"></textarea>
-            </div>
-            <div class="div-actions">
-                <div class="div-buttons">
-                    <input type="button" value="Convert" translate="yes" class="button" id="button-convert" onclick="onConvert();">
-                    <input type="button" value="Clear" class="button" id="button-clear" onclick="onClear();">
+    <div id="page-container">
+        <div id="content-wrap">
+            <div id="app">
+                <div>
+                    <h1 id="app-title">JSON to CSV</h1>
+                </div>
+                <div class="div-input">
+                    <label for="text-input">JSON</label><br>
+                    <textarea id="text-input" cols="30" rows="10"></textarea>
+                </div>
+                <div class="div-actions">
+                    <div class="div-buttons">
+                        <input type="button" value="Convert" translate="yes" class="button" id="button-convert" onclick="onConvert();">
+                        <input type="button" value="Clear" class="button" id="button-clear" onclick="onClear();">
+                    </div>
+                </div>
+                <div class="div-output">
+                    <label for="text-output">CSV</label><br>
+                    <textarea id="text-output" cols="30" rows="10" readonly></textarea>
                 </div>
             </div>
-            <div class="div-output">
-                <label for="text-output">CSV</label><br>
-                <textarea name="" id="text-output" cols="30" rows="10" readonly></textarea>
-            </div>
         </div>
+        <footer id="footer">
+            <p id="footer-content">Made with <span id="heart-emoji">❤</span> by <a href="http://github.com/thiagorocha503/json2csv" target="_blank" id="github-link" rel="noopener noreferrer">Thiago Rocha</a></p>
+        </footer>
     </div>
-    <footer>
-        <p class="footer-content">Made with <span id="heart-emoji">❤</span> by <a href="https://github.com/thiagorocha503/json2csv" target="_blank" rel="noopener noreferrer" id="link-profile">Thiago Rocha</a></p>
-    </footer>
     <script src="js/app.js"></script>
 </body>
 
